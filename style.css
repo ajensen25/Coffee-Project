@@ -20,6 +20,8 @@
   --font-size-xxl: 2.8rem;
 
   --site-max-width: 1300px;
+
+  --mobile-transition-width: 800px;
 }
 
 body {
@@ -53,6 +55,11 @@ header .navbar {
   font-weight: 600;
   color: var(--white-color);
   text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.navbar .navbar-logo:hover {
+  color: var(--secondary-color);
 }
 
 .navbar .navbar-logo span {
@@ -74,6 +81,23 @@ header .navbar {
 
 .navbar .navbar-menu a:hover {
   color: var(--secondary-color);
+}
+
+#menu-button {
+  display: none;
+  color: var(--white-color);
+  padding: 5px;
+  cursor: pointer;
+}
+
+#close-button {
+  display: none;
+  color: var(--black-color);
+  padding: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 
@@ -118,4 +142,62 @@ header .navbar {
 .hero-section .content button:hover {
   background: var(--secondary-color);
   color: var(--white-color);
+}
+
+@media screen and (width <= 800px) {
+  header.show-mobile-menu::before {
+    content: '';
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+  }
+
+  .navbar .navbar-menu {
+    position: fixed;
+    left: -300px;
+    top: 0;
+    width: 300px;
+    background: var(--white-color);
+    height: 100vh;
+    flex-direction: column;
+    align-items: start;
+    padding: 70px 40px 0;
+    transition: left 0.2s ease;
+  }
+
+  .navbar .navbar-menu a {
+    color: var(--black-color);
+  }
+
+  header.show-mobile-menu .navbar .navbar-menu {
+    left: 0;
+  }
+
+  #menu-button {
+    display: block;
+  }
+
+  #close-button {
+    display: block;
+  }
+
+  .hero-section .content {
+    text-align: center;
+  }
+
+  .hero-section .content h2, 
+  .hero-section .content p {
+    max-width: 100%;
+  }
+
+  .hero-section .content h2 {
+    line-height: 60px;
+  }
+
+  .hero-section .content button {
+    padding: 15px 25px;
+  }
 }
